@@ -3,7 +3,7 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -33,6 +33,7 @@ import TransformedImage from "./TransformedImage"
 import { getCldImageUrl } from "next-cloudinary"
 import { addImage, updateImage } from "@/lib/actions/image.actions"
 import { useRouter } from "next/navigation"
+import { InsufficientCreditsModal } from "./InsuficientCreditsModal"
 
 
 export const formSchema = z.object({
@@ -177,9 +178,16 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
         })
     }
 
+    useEffect(() => {
+      if(image && (type === 'restore' || type === 'removeBackground')) {
+        setNewTransformation(transformationType.config)
+      }
+    },[image, transformationType.config, type])
+
     return (
         <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
             <CustomField 
                 control={form.control}
                 name="title"
