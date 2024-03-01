@@ -60,7 +60,7 @@ const TransformedImage = ({image, type, title, transformationConfig, isTransform
             </div>
         ): (
             <div className="transformed-placeholder">
-                
+                Transformed Image
             </div>
 
         )}
