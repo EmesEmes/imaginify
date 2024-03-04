@@ -202,7 +202,7 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
                     formLabel="Aspect Ratio"
                     className="w-full"
                     render={({ field }) => (
-                        <Select onValueChange={(value) => onSelectFieldHandler(value, field.onChange)} >
+                        <Select onValueChange={(value) => onSelectFieldHandler(value, field.onChange)} value={field.value}>
                             <SelectTrigger className="select-field">
                                 <SelectValue placeholder="Select size" />
                             </SelectTrigger>
