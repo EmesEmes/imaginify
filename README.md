@@ -40,4 +40,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 1. Next.js: `npx create-next-app@latest`
 2. shadcn/ui `npx shadcn-ui@latest init`
 3. MongoDB Atlas
+4. Clerk
+5. Stripe
  
